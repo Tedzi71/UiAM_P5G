@@ -192,7 +192,7 @@
                 android:backgroundTint="@color/accent_5g"
                 android:padding="0dp"
                 android:text="VIEW ON MAP"
-                android:textColor="@color/black"
+                android:textColor="@color/color_accent_button_text"
                 android:textSize="11sp"
                 android:textStyle="bold"
                 app:cornerRadius="6dp" />
@@ -232,7 +232,7 @@
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@android.drawable/ic_menu_delete"
+                android:src="@drawable/ic_delete"
                 app:tint="@color/color_bad" />
         </LinearLayout>
     </LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand colors -->
+    <color name="primary">#0D47A1</color>
+    <color name="primary_variant">#082B63</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    
+    <!-- Accent for 5G (Neon cyan in dark mode) -->
+    <color name="accent_5g">#00E5FF</color>
+    <color name="secondary">#00B0FF</color>
+    <color name="colorOnSecondary">#000000</color>
+
+    <!-- Backgrounds (Dark Mode) -->
+    <color name="background_dark">#121820</color>
+    <color name="card_background_dark">#1E2632</color>
+    <color name="card_border">#2C3645</color>
+    <color name="text_primary_dark">#ECEFF1</color>
+    <color name="text_secondary_dark">#90A4AE</color>
+
+    <!-- Status idle background -->
+    <color name="status_idle_bg">#2C3645</color>
+
+    <!-- Button Text on Accent -->
+    <color name="color_accent_button_text">#000000</color>
+
+    <!-- 3GPP Quality / Status Colors -->
+    <color name="color_excellent">#00E676</color>  <!-- Green: > -80 dBm / > 15 dB / < 15 ms -->
+    <color name="color_good">#76FF03</color>       <!-- Light Green: -80 to -90 dBm -->
+    <color name="color_mid">#FFD600</color>        <!-- Yellow: -90 to -100 dBm / 15-30 ms -->
+    <color name="color_poor">#FF9100</color>       <!-- Orange: -100 to -110 dBm / 30-60 ms -->
+    <color name="color_bad">#FF1744</color>        <!-- Red: < -110 dBm / > 60 ms -->
+
+    <!-- Technology Badge Colors -->
+    <color name="tech_5g_sa">#00E5FF</color>       <!-- Neon Cyan -->
+    <color name="tech_5g_nsa">#D500F9</color>      <!-- Magenta / Purple -->
+    <color name="tech_lte">#FF9100</color>         <!-- Orange -->
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

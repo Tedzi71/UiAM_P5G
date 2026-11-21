@@ -1,7 +1,9 @@
 package uiam.p5g.telemetry
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 import android.telephony.CellIdentityLte
 import android.telephony.CellIdentityNr
@@ -14,7 +16,9 @@ import android.telephony.SignalStrength
 import android.telephony.TelephonyCallback
 import android.telephony.TelephonyDisplayInfo
 import android.telephony.TelephonyManager
+import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import uiam.p5g.data.model.RadioMetrics
 
 class RadioCollector(private val context: Context) {
@@ -29,31 +33,60 @@ class RadioCollector(private val context: Context) {
     private var telephonyCallback: Any? = null
     private var isListening = false
 
+    private fun hasPhonePermission(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            context,
+            Manifest.permission.READ_PHONE_STATE
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun hasLocationPermission(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            context,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
     @SuppressLint("MissingPermission")
     fun startListening() {
         if (isListening) return
+
+        if (!hasPhonePermission() && !hasLocationPermission()) {
+            Log.w("RadioCollector", "Permissions not yet granted; listening deferred")
+            pollCurrentState()
+            return
+        }
+
         isListening = true
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val callback = object : TelephonyCallback(),
-                TelephonyCallback.CellInfoListener,
-                TelephonyCallback.DisplayInfoListener,
-                TelephonyCallback.SignalStrengthsListener {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val callback = object : TelephonyCallback(),
+                    TelephonyCallback.CellInfoListener,
+                    TelephonyCallback.DisplayInfoListener,
+                    TelephonyCallback.SignalStrengthsListener {
 
-                override fun onCellInfoChanged(cellInfoList: MutableList<CellInfo>) {
-                    processCellInfo(cellInfoList)
-                }
+                    override fun onCellInfoChanged(cellInfoList: MutableList<CellInfo>) {
+                        processCellInfo(cellInfoList)
+                    }
 
-                override fun onDisplayInfoChanged(telephonyDisplayInfo: TelephonyDisplayInfo) {
-                    processDisplayInfo(telephonyDisplayInfo)
-                }
+                    override fun onDisplayInfoChanged(telephonyDisplayInfo: TelephonyDisplayInfo) {
+                        processDisplayInfo(telephonyDisplayInfo)
+                    }
 
-                override fun onSignalStrengthsChanged(signalStrength: SignalStrength) {
-                    processSignalStrengths(signalStrength)
+                    override fun onSignalStrengthsChanged(signalStrength: SignalStrength) {
+                        processSignalStrengths(signalStrength)
+                    }
                 }
+                telephonyManager.registerTelephonyCallback(context.mainExecutor, callback)
+                telephonyCallback = callback
             }
-            telephonyManager.registerTelephonyCallback(context.mainExecutor, callback)
-            telephonyCallback = callback
+        } catch (e: SecurityException) {
+            Log.w("RadioCollector", "SecurityException during registerTelephonyCallback: ${e.message}")
+            isListening = false
+        } catch (e: Exception) {
+            Log.w("RadioCollector", "Exception during registerTelephonyCallback: ${e.message}")
+            isListening = false
         }
 
         // Query initial state
@@ -64,29 +97,68 @@ class RadioCollector(private val context: Context) {
         if (!isListening) return
         isListening = false
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && telephonyCallback is TelephonyCallback) {
-            telephonyManager.unregisterTelephonyCallback(telephonyCallback as TelephonyCallback)
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && telephonyCallback is TelephonyCallback) {
+                telephonyManager.unregisterTelephonyCallback(telephonyCallback as TelephonyCallback)
+            }
+        } catch (e: Exception) {
+            Log.w("RadioCollector", "Exception during unregisterTelephonyCallback: ${e.message}")
         }
         telephonyCallback = null
     }
 
     @SuppressLint("MissingPermission")
     fun pollCurrentState(): RadioMetrics {
-        val operator = telephonyManager.networkOperatorName ?: ""
-        val mccMnc = telephonyManager.networkOperator ?: ""
+        var operator = ""
+        var mccMnc = ""
+
+        try {
+            operator = telephonyManager.networkOperatorName ?: ""
+            mccMnc = telephonyManager.networkOperator ?: ""
+        } catch (e: Exception) {
+            Log.w("RadioCollector", "Error querying operator info: ${e.message}")
+        }
 
         var updated = currentMetrics.copy(
-            operatorName = operator,
+            operatorName = if (operator.isNotBlank()) operator else (if (isEmulator()) "Android Emulator" else "No Carrier"),
             mccMnc = mccMnc
         )
 
-        try {
-            val cellInfoList = telephonyManager.allCellInfo
-            if (!cellInfoList.isNullOrEmpty()) {
-                updated = extractMetricsFromCellList(cellInfoList, updated)
+        if (hasLocationPermission()) {
+            try {
+                val cellInfoList = telephonyManager.allCellInfo
+                if (!cellInfoList.isNullOrEmpty()) {
+                    updated = extractMetricsFromCellList(cellInfoList, updated)
+                } else if (isEmulator()) {
+                    // Provide friendly mock metrics on emulator so UI displays meaningful preview
+                    updated = updated.copy(
+                        networkType = if (updated.networkType == "UNKNOWN") "5G_SA (Emulated)" else updated.networkType,
+                        nrBand = if (updated.nrBand.isEmpty()) "n78 (3.5 GHz)" else updated.nrBand,
+                        nrArfcn = if (updated.nrArfcn == 0) 640000 else updated.nrArfcn,
+                        nrPci = if (updated.nrPci < 0) 104 else updated.nrPci,
+                        nrNci = if (updated.nrNci < 0) 4123512L else updated.nrNci,
+                        nrSsRsrp = if (updated.nrSsRsrp <= -140) -82 else updated.nrSsRsrp,
+                        nrSsSinr = if (updated.nrSsSinr <= -23) 16 else updated.nrSsSinr,
+                        nrSsRsrq = if (updated.nrSsRsrq <= -40) -11 else updated.nrSsRsrq
+                    )
+                }
+            } catch (e: SecurityException) {
+                Log.w("RadioCollector", "SecurityException during allCellInfo: ${e.message}")
+            } catch (e: Exception) {
+                Log.w("RadioCollector", "Exception during allCellInfo: ${e.message}")
             }
-        } catch (_: SecurityException) {
-        } catch (_: Exception) {}
+        } else if (isEmulator()) {
+            updated = updated.copy(
+                networkType = "5G_SA (Emulated)",
+                nrBand = "n78 (3.5 GHz)",
+                nrArfcn = 640000,
+                nrPci = 104,
+                nrNci = 4123512L,
+                nrSsRsrp = -82,
+                nrSsSinr = 16,
+                nrSsRsrq = -11
+            )
+        }
 
         currentMetrics = updated
         return currentMetrics
@@ -106,20 +178,33 @@ class RadioCollector(private val context: Context) {
             else -> {
                 if (currentMetrics.networkType.startsWith("5G")) {
                     currentMetrics.networkType
-                } else if (telephonyManager.dataNetworkType == TelephonyManager.NETWORK_TYPE_NR) {
-                    "5G_SA"
-                } else if (telephonyManager.dataNetworkType == TelephonyManager.NETWORK_TYPE_LTE) {
-                    "LTE"
                 } else {
-                    currentMetrics.networkType
+                    val dataNet = getSafeDataNetworkType()
+                    when (dataNet) {
+                        TelephonyManager.NETWORK_TYPE_NR -> "5G_SA"
+                        TelephonyManager.NETWORK_TYPE_LTE -> "LTE"
+                        else -> currentMetrics.networkType
+                    }
                 }
             }
         }
         currentMetrics = currentMetrics.copy(networkType = netType)
     }
 
+    @SuppressLint("MissingPermission")
+    private fun getSafeDataNetworkType(): Int {
+        if (!hasPhonePermission()) return TelephonyManager.NETWORK_TYPE_UNKNOWN
+        return try {
+            telephonyManager.dataNetworkType
+        } catch (e: SecurityException) {
+            TelephonyManager.NETWORK_TYPE_UNKNOWN
+        } catch (e: Exception) {
+            TelephonyManager.NETWORK_TYPE_UNKNOWN
+        }
+    }
+
     private fun processSignalStrengths(signalStrength: SignalStrength) {
-        // Raw signal strength callback can be polled as needed
+        // Raw signal strength
     }
 
     private fun extractMetricsFromCellList(
@@ -246,6 +331,20 @@ class RadioCollector(private val context: Context) {
         }
 
         return updated
+    }
+
+    private fun isEmulator(): Boolean {
+        return (Build.FINGERPRINT.startsWith("generic")
+                || Build.FINGERPRINT.startsWith("unknown")
+                || Build.MODEL.contains("google_sdk")
+                || Build.MODEL.contains("Emulator")
+                || Build.MODEL.contains("Android SDK built for")
+                || Build.MANUFACTURER.contains("Genymotion")
+                || Build.HARDWARE.contains("goldfish")
+                || Build.HARDWARE.contains("ranchu")
+                || Build.PRODUCT.contains("sdk")
+                || Build.PRODUCT.contains("google_sdk")
+                || Build.PRODUCT.contains("sdk_gphone"))
     }
 
     companion object {

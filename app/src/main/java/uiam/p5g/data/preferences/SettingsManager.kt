@@ -2,6 +2,7 @@ package uiam.p5g.data.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatDelegate
 
 class SettingsManager(context: Context) {
 
@@ -22,6 +23,10 @@ class SettingsManager(context: Context) {
         const val KEY_SAMPLE_INTERVAL = "key_sample_interval"
         const val KEY_THROUGHPUT_AUTO_INTERVAL = "key_throughput_auto_interval"
 
+        const val KEY_THEME_MODE = "key_theme_mode"
+        const val THEME_DARK = "dark"
+        const val THEME_BRIGHT = "bright"
+
         @Volatile
         private var instance: SettingsManager? = null
 
@@ -30,6 +35,22 @@ class SettingsManager(context: Context) {
                 instance ?: SettingsManager(context.applicationContext).also { instance = it }
             }
         }
+    }
+
+    var themeMode: String
+        get() = prefs.getString(KEY_THEME_MODE, THEME_DARK) ?: THEME_DARK
+        set(value) = prefs.edit().putString(KEY_THEME_MODE, value).apply()
+
+    val isDarkMode: Boolean
+        get() = themeMode == THEME_DARK
+
+    fun applyTheme() {
+        val mode = if (isDarkMode) {
+            AppCompatDelegate.MODE_NIGHT_YES
+        } else {
+            AppCompatDelegate.MODE_NIGHT_NO
+        }
+        AppCompatDelegate.setDefaultNightMode(mode)
     }
 
     var isGatewayAuto: Boolean
