@@ -2,9 +2,11 @@ package uiam.p5g.ui.history
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import uiam.p5g.R
 import uiam.p5g.data.model.TestSession
 import uiam.p5g.databinding.ItemSessionBinding
 import java.text.SimpleDateFormat
@@ -24,8 +26,16 @@ class SessionAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(session: TestSession) {
+            val ctx = itemView.context
             binding.tvSessionName.text = session.name
             binding.tvDominantNetBadge.text = session.dominantNetworkType
+
+            val badgeColor = when {
+                session.dominantNetworkType.startsWith("5G_SA") -> ContextCompat.getColor(ctx, R.color.tech_5g_sa)
+                session.dominantNetworkType.contains("NSA") -> ContextCompat.getColor(ctx, R.color.tech_5g_nsa)
+                else -> ContextCompat.getColor(ctx, R.color.tech_lte)
+            }
+            binding.tvDominantNetBadge.background?.mutate()?.setTint(badgeColor)
 
             val dateStr = dateFormat.format(Date(session.startTime))
             val durationSec = if (session.endTime > session.startTime) {

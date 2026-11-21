@@ -12,29 +12,29 @@
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="@color/card_background_dark"
-        android:elevation="4dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="8dp"
-        android:paddingEnd="12dp"
+        android:paddingEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Return button in top left -->
         <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Return to History"
+            android:padding="10dp"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_arrow_back"
-            app:tint="@color/accent_5g" />
+            app:tint="@color/text_primary_dark" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="6dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -43,37 +43,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
                 android:maxLines="1"
                 android:text="Session Coverage"
                 android:textColor="@color/text_primary_dark"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvCurrentMetricSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:text="Layer: SS-RSRP Coverage"
-                android:textColor="@color/accent_5g"
+                android:textColor="@color/text_secondary_dark"
                 android:textSize="11sp" />
         </LinearLayout>
 
-        <!-- Menu button in top right corner -->
         <ImageButton
             android:id="@+id/btnOptionsMenu"
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Map Options"
+            android:padding="10dp"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_more_vert"
-            app:tint="@color/accent_5g" />
+            app:tint="@color/text_primary_dark" />
     </LinearLayout>
 
     <View
         android:id="@+id/topDivider"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="@color/card_border"
+        android:background="@color/divider_subtle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topBar" />
@@ -93,11 +95,11 @@
         android:id="@+id/cardVerticalLegend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
         app:cardBackgroundColor="@color/card_background_dark"
         app:cardCornerRadius="10dp"
-        app:cardElevation="6dp"
+        app:cardElevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topDivider"
         app:strokeColor="@color/card_border"
@@ -107,7 +109,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:paddingStart="10dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="8dp">
 
             <TextView
                 android:id="@+id/tvLegendMetricName"
@@ -115,10 +120,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="6dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="SS-RSRP"
-                android:textColor="@color/accent_5g"
-                android:textSize="10sp"
-                android:textStyle="bold" />
+                android:textColor="@color/text_primary_dark"
+                android:textSize="11sp" />
 
             <!-- Level 1 (Excellent) -->
             <LinearLayout
@@ -131,8 +136,8 @@
 
                 <View
                     android:id="@+id/viewColor1"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
                     android:background="@drawable/bg_badge_5g"
                     android:backgroundTint="@color/color_excellent" />
 
@@ -142,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:text="> -80"
-                    android:textColor="@color/text_primary_dark"
+                    android:textColor="@color/text_secondary_dark"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -158,8 +163,8 @@
 
                 <View
                     android:id="@+id/viewColor2"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
                     android:background="@drawable/bg_badge_5g"
                     android:backgroundTint="@color/color_good" />
 
@@ -169,7 +174,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:text="-90"
-                    android:textColor="@color/text_primary_dark"
+                    android:textColor="@color/text_secondary_dark"
                     android:textSize="10sp" />
             </LinearLayout>
 
@@ -184,8 +189,8 @@
 
                 <View
                     android:id="@+id/viewColor3"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
                     android:background="@drawable/bg_badge_5g"
                     android:backgroundTint="@color/color_mid" />
 
@@ -195,7 +200,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:text="-100"
-                    android:textColor="@color/text_primary_dark"
+                    android:textColor="@color/text_secondary_dark"
                     android:textSize="10sp" />
             </LinearLayout>
 
@@ -210,8 +215,8 @@
 
                 <View
                     android:id="@+id/viewColor4"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
                     android:background="@drawable/bg_badge_5g"
                     android:backgroundTint="@color/color_poor" />
 
@@ -221,7 +226,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:text="-110"
-                    android:textColor="@color/text_primary_dark"
+                    android:textColor="@color/text_secondary_dark"
                     android:textSize="10sp" />
             </LinearLayout>
 
@@ -236,8 +241,8 @@
 
                 <View
                     android:id="@+id/viewColor5"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
                     android:background="@drawable/bg_badge_5g"
                     android:backgroundTint="@color/color_bad" />
 
@@ -247,7 +252,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:text="&lt; -110"
-                    android:textColor="@color/text_primary_dark"
+                    android:textColor="@color/text_secondary_dark"
                     android:textSize="10sp" />
             </LinearLayout>
         </LinearLayout>
@@ -263,9 +268,10 @@
         android:contentDescription="Fit Route on Screen"
         android:src="@drawable/ic_my_location"
         app:backgroundTint="@color/card_background_dark"
+        app:elevation="3dp"
         app:layout_constraintBottom_toTopOf="@id/cardTelemetryPopup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/accent_5g" />
+        app:tint="@color/primary" />
 
     <!-- Clickable Marker Telemetry Detail Popup Card -->
     <com.google.android.material.card.MaterialCardView
@@ -277,19 +283,19 @@
         android:layout_marginBottom="12dp"
         android:visibility="gone"
         app:cardBackgroundColor="@color/card_background_dark"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="@color/accent_5g"
+        app:strokeColor="@color/card_border"
         app:strokeWidth="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="14dp">
+            android:padding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -302,16 +308,19 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
                     android:text="Sample Telemetry"
-                    android:textColor="@color/accent_5g"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="15sp" />
 
                 <ImageButton
                     android:id="@+id/btnClosePopup"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Close Details"
+                    android:padding="6dp"
+                    android:scaleType="centerInside"
                     android:src="@drawable/ic_close"
                     app:tint="@color/text_secondary_dark" />
             </LinearLayout>
@@ -320,6 +329,7 @@
                 android:id="@+id/tvPopupTimestampCoords"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:text="Timestamp | Lat: --, Lon: --"
                 android:textColor="@color/text_secondary_dark"
                 android:textSize="11sp" />
@@ -327,9 +337,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/card_border" />
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/divider_subtle" />
 
             <!-- Radio details -->
             <TextView
@@ -344,11 +354,11 @@
                 android:id="@+id/tvPopupSignalDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="3dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="SS-RSRP: -- dBm | SS-SINR: -- dB"
                 android:textColor="@color/color_excellent"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textSize="13sp" />
 
             <!-- QoS details -->
             <TextView

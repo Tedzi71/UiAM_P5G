@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Brand colors -->
-    <color name="primary">#0D47A1</color>
-    <color name="primary_variant">#082B63</color>
+    <!-- Brand identity: Logo #062B5B (Navy) and #ED1C24 (Red) -->
+    <color name="primary">#062B5B</color>
+    <color name="primary_variant">#031733</color>
     <color name="colorOnPrimary">#FFFFFF</color>
     
-    <!-- Accent for 5G (Crisp high-contrast vibrant cyan/blue in light mode) -->
-    <color name="accent_5g">#0277BD</color>
-    <color name="secondary">#0091EA</color>
+    <!-- Brand Red Accent (Used with restraint for live recording, warnings, and highlights) -->
+    <color name="brand_red">#ED1C24</color>
+    <color name="accent_5g">#062B5B</color>
+    <color name="secondary">#1E40AF</color>
     <color name="colorOnSecondary">#FFFFFF</color>
 
-    <!-- Backgrounds (Bright / Light Mode) -->
-    <color name="background_dark">#F4F6F9</color>
+    <!-- Surfaces & Backgrounds (Light Theme: Refined Light Gray / Subtle Warm Stone) -->
+    <color name="background_dark">#F8F9FA</color>
     <color name="card_background_dark">#FFFFFF</color>
-    <color name="card_border">#DCE3EB</color>
-    <color name="text_primary_dark">#0F172A</color>
-    <color name="text_secondary_dark">#64748B</color>
+    <color name="card_border">#E2E8F0</color>
+    <color name="divider_subtle">#EDF2F7</color>
 
-    <!-- Status idle background -->
-    <color name="status_idle_bg">#CBD5E1</color>
+    <!-- Typography (Deep Navy & Slate) -->
+    <color name="text_primary_dark">#062B5B</color>
+    <color name="text_secondary_dark">#5C6B7E</color>
+    <color name="text_tertiary">#8C9BAE</color>
 
-    <!-- Button Text on Accent -->
+    <!-- Status & Badges -->
+    <color name="status_idle_bg">#E2E8F0</color>
+    <color name="status_live_bg">#FEE2E2</color>
     <color name="color_accent_button_text">#FFFFFF</color>
 
-    <!-- 3GPP Quality / Status Colors -->
-    <color name="color_excellent">#00C853</color>  <!-- Green: > -80 dBm / > 15 dB / < 15 ms -->
-    <color name="color_good">#64DD17</color>       <!-- Light Green: -80 to -90 dBm -->
-    <color name="color_mid">#F57F17</color>        <!-- Darker Gold: -90 to -100 dBm / 15-30 ms -->
-    <color name="color_poor">#FF6D00</color>       <!-- Orange: -100 to -110 dBm / 30-60 ms -->
-    <color name="color_bad">#D50000</color>        <!-- Red: < -110 dBm / > 60 ms -->
+    <!-- 3GPP Quality / Performance Scale (Balanced for Light Surfaces) -->
+    <color name="color_excellent">#0D9488</color>  <!-- Deep Emerald: > -80 dBm / > 15 dB / < 15 ms -->
+    <color name="color_good">#16A34A</color>       <!-- Clean Green: -80 to -90 dBm -->
+    <color name="color_mid">#D97706</color>        <!-- Warm Amber: -90 to -100 dBm / 15-30 ms -->
+    <color name="color_poor">#EA580C</color>       <!-- Orange: -100 to -110 dBm / 30-60 ms -->
+    <color name="color_bad">#ED1C24</color>        <!-- Brand Red: < -110 dBm / > 60 ms -->
 
     <!-- Technology Badge Colors -->
-    <color name="tech_5g_sa">#00E5FF</color>       <!-- Neon Cyan -->
-    <color name="tech_5g_nsa">#D500F9</color>      <!-- Magenta / Purple -->
-    <color name="tech_lte">#FF9100</color>         <!-- Orange -->
+    <color name="tech_5g_sa">#0284C7</color>       <!-- Cyan / Blue -->
+    <color name="tech_5g_nsa">#7C3AED</color>      <!-- Deep Purple -->
+    <color name="tech_lte">#D97706</color>         <!-- Amber -->
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

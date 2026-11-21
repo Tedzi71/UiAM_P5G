@@ -75,10 +75,10 @@ class SettingsFragment : Fragment() {
         isUpdatingThemeUi = true
         if (settingsManager.isDarkMode) {
             binding.toggleThemeGroup.check(R.id.btnThemeDark)
-            binding.btnToggleTheme.text = "SWITCH TO BRIGHT THEME"
+            binding.btnToggleTheme.text = "Switch to Light Theme"
         } else {
             binding.toggleThemeGroup.check(R.id.btnThemeBright)
-            binding.btnToggleTheme.text = "SWITCH TO DARK THEME"
+            binding.btnToggleTheme.text = "Switch to Dark Theme"
         }
         isUpdatingThemeUi = false
     }
@@ -110,7 +110,7 @@ class SettingsFragment : Fragment() {
     private fun switchTheme(darkMode: Boolean) {
         settingsManager.themeMode = if (darkMode) SettingsManager.THEME_DARK else SettingsManager.THEME_BRIGHT
         settingsManager.applyTheme()
-        val themeName = if (darkMode) "Dark Theme" else "Bright Theme"
+        val themeName = if (darkMode) "Dark Theme" else "Light Theme"
         Toast.makeText(requireContext(), "Applied $themeName", Toast.LENGTH_SHORT).show()
     }
 

@@ -11,6 +11,7 @@
         android:id="@+id/topBar"
         android:layout_width="0dp"
         android:layout_height="56dp"
+        android:background="@color/card_background_dark"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="8dp"
@@ -25,25 +26,27 @@
             android:layout_height="44dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Return"
+            android:padding="10dp"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_arrow_back"
-            app:tint="@color/accent_5g" />
+            app:tint="@color/text_primary_dark" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="6dp"
             android:layout_weight="1"
-            android:text="QoE Test (Placeholder)"
+            android:fontFamily="sans-serif-medium"
+            android:text="QoE Assessment"
             android:textColor="@color/text_primary_dark"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <View
         android:id="@+id/topDivider"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="@color/card_border"
+        android:background="@color/divider_subtle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topBar" />
@@ -56,7 +59,7 @@
         android:layout_marginEnd="24dp"
         app:cardBackgroundColor="@color/card_background_dark"
         app:cardCornerRadius="16dp"
-        app:cardElevation="6dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toTopOf="@id/bottomBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,22 +74,33 @@
             android:orientation="vertical"
             android:padding="32dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5G QoE Testing"
-                android:textColor="@color/accent_5g"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:alpha="0.3"
+                android:contentDescription="QoE lab icon"
+                android:src="@drawable/ic_lab"
+                app:tint="@color/primary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="5G Video Streaming QoE"
+                android:textColor="@color/text_primary_dark"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:text="Local video streaming and application-level QoE assessment tests will be available here."
+                android:lineSpacingExtra="3dp"
+                android:maxWidth="260dp"
+                android:text="Automated video playback, initial buffering delay, and application-level QoE assessment tests will be benchmarked here."
                 android:textColor="@color/text_secondary_dark"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -102,15 +116,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnQuitQoe"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:backgroundTint="@color/primary"
-            android:text="QUIT QoE TEST"
+            android:text="Return to Monitor"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:textStyle="bold"
             app:cornerRadius="8dp" />
     </LinearLayout>
 

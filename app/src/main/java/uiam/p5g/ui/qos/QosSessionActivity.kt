@@ -11,7 +11,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -110,7 +110,7 @@ class QosSessionActivity : AppCompatActivity() {
 
     private fun handleExitRequest() {
         if (measurementService?.isRecording == true) {
-            AlertDialog.Builder(this)
+            MaterialAlertDialogBuilder(this)
                 .setTitle("Active Session in Progress")
                 .setMessage("A measurement session is currently recording. Would you like to save it or discard?")
                 .setPositiveButton("Save") { _, _ ->
@@ -210,12 +210,20 @@ class QosSessionActivity : AppCompatActivity() {
         val input = EditText(this).apply {
             setText(defaultName)
             setSelection(defaultName.length)
+            isSingleLine = true
         }
 
-        AlertDialog.Builder(this)
+        val container = android.widget.FrameLayout(this).apply {
+            val paddingHorizontal = (24 * resources.displayMetrics.density).toInt()
+            val paddingTop = (8 * resources.displayMetrics.density).toInt()
+            setPadding(paddingHorizontal, paddingTop, paddingHorizontal, 0)
+            addView(input)
+        }
+
+        MaterialAlertDialogBuilder(this)
             .setTitle("Save QoS Test Session")
             .setMessage("Enter a name for this drive/walk test session:")
-            .setView(input)
+            .setView(container)
             .setPositiveButton("Save Session") { _, _ ->
                 val chosenName = input.text.toString().trim().ifEmpty { defaultName }
                 saveAndFinish(chosenName)
@@ -255,7 +263,7 @@ class QosSessionActivity : AppCompatActivity() {
     }
 
     private fun confirmExitWithoutSaving() {
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this)
             .setTitle("Discard Session?")
             .setMessage("Are you sure you want to exit without saving? All telemetry samples recorded in this session will be permanently deleted.")
             .setPositiveButton("Discard & Exit") { _, _ ->

@@ -10,23 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp">
 
-        <!-- Top Title Bar -->
+        <!-- Screen Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingBottom="12dp">
+            android:paddingBottom="16dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="5G RADIO MONITOR"
-                android:textColor="@color/accent_5g"
-                android:textSize="18sp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Radio Monitor"
+                android:textColor="@color/text_primary_dark"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -34,23 +35,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_status_idle"
-                android:paddingStart="8dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="4dp"
-                android:text="LIVE RF"
-                android:textColor="@color/white"
-                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:text="LIVE"
+                android:textColor="@color/text_primary_dark"
+                android:textSize="11sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- 5G Status Card -->
+        <!-- 1. Serving Cell & Carrier Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="16dp"
             app:cardBackgroundColor="@color/card_background_dark"
-            app:cardCornerRadius="12dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="1dp"
             app:strokeColor="@color/card_border"
             app:strokeWidth="1dp">
 
@@ -58,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="18dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -71,19 +74,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_badge_5g"
-                        android:paddingStart="12dp"
-                        android:paddingTop="6dp"
-                        android:paddingEnd="12dp"
-                        android:paddingBottom="6dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:paddingStart="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="5dp"
                         android:text="5G SA"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="14dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -91,31 +95,34 @@
                             android:id="@+id/tvOperatorName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
                             android:text="Detecting Network..."
                             android:textColor="@color/text_primary_dark"
-                            android:textSize="16sp"
+                            android:textSize="17sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tvMccMnc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
                             android:text="PLMN: ---"
                             android:textColor="@color/text_secondary_dark"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/card_border" />
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@color/divider_subtle" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -123,8 +130,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif-medium"
                         android:text="Band: ---"
-                        android:textColor="@color/accent_5g"
+                        android:textColor="@color/primary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -139,13 +147,14 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- 5G Radio Metrics Grid -->
+        <!-- 2. Signal Quality Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             app:cardBackgroundColor="@color/card_background_dark"
-            app:cardCornerRadius="12dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="1dp"
             app:strokeColor="@color/card_border"
             app:strokeWidth="1dp">
 
@@ -153,15 +162,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="18dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:text="RF TELEMETRY"
-                    android:textColor="@color/text_secondary_dark"
-                    android:textSize="12sp"
+                    android:layout_marginBottom="14dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Radio Telemetry"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <!-- Row 1: RSRP, SINR, RSRQ -->
@@ -170,6 +180,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
+                    <!-- RSRP -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -187,12 +198,15 @@
                             android:id="@+id/tvRsrpValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif-medium"
                             android:text="-- dBm"
                             android:textColor="@color/color_excellent"
                             android:textSize="22sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
+                    <!-- SINR -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -210,12 +224,15 @@
                             android:id="@+id/tvSinrValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif-medium"
                             android:text="-- dB"
                             android:textColor="@color/color_excellent"
                             android:textSize="22sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
+                    <!-- RSRQ -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -233,6 +250,8 @@
                             android:id="@+id/tvRsrqValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif-medium"
                             android:text="-- dB"
                             android:textColor="@color/text_primary_dark"
                             android:textSize="22sp"
@@ -240,11 +259,17 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- Row 2: Cell IDs -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@color/divider_subtle" />
+
+                <!-- Row 2: Cell Identifiers -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -253,17 +278,17 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="PCI: ---"
-                        android:textColor="@color/text_primary_dark"
-                        android:textSize="13sp" />
+                        android:textColor="@color/text_secondary_dark"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tvNciValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
+                        android:layout_weight="1.4"
                         android:text="NCI: ---"
-                        android:textColor="@color/text_primary_dark"
-                        android:textSize="13sp" />
+                        android:textColor="@color/text_secondary_dark"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tvTacValue"
@@ -271,19 +296,20 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="TAC: ---"
-                        android:textColor="@color/text_primary_dark"
-                        android:textSize="13sp" />
+                        android:textColor="@color/text_secondary_dark"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Test Launch Actions Card -->
+        <!-- 3. Test Actions Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="24dp"
             app:cardBackgroundColor="@color/card_background_dark"
-            app:cardCornerRadius="12dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="1dp"
             app:strokeColor="@color/card_border"
             app:strokeWidth="1dp">
 
@@ -291,42 +317,53 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="18dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:text="NETWORK MEASUREMENTS"
-                    android:textColor="@color/text_secondary_dark"
-                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Measurement Sessions"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <!-- Button 1: Start QoS Test Session -->
-                <Button
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Log geotagged 5G radio metrics and default gateway QoS."
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="13sp" />
+
+                <!-- Button 1: Start Test Session -->
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnStartQosSession"
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
+                    android:layout_height="52dp"
                     android:backgroundTint="@color/primary"
-                    android:text="START QoS TEST SESSION"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Start QoS Test Session"
+                    android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="8dp" />
+                    app:cornerRadius="10dp" />
 
                 <!-- Button 2: QoE Test Placeholder -->
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnStartQoeSession"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="48dp"
                     android:layout_marginTop="10dp"
-                    android:text="QoE TEST (PLACEHOLDER)"
-                    android:textColor="@color/accent_5g"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="QoE Video Streaming Test"
+                    android:textAllCaps="false"
+                    android:textColor="@color/primary"
                     android:textSize="13sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="8dp"
-                    app:strokeColor="@color/accent_5g" />
+                    app:cornerRadius="10dp"
+                    app:strokeColor="@color/card_border" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

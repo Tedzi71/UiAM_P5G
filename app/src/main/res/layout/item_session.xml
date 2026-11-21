@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="12dp"
-    android:layout_marginTop="6dp"
-    android:layout_marginEnd="12dp"
-    android:layout_marginBottom="6dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="5dp"
     app:cardBackgroundColor="@color/card_background_dark"
-    app:cardCornerRadius="12dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="0dp"
     app:strokeColor="@color/card_border"
     app:strokeWidth="1dp">
 
@@ -31,33 +32,34 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
                 android:maxLines="1"
-                android:text="Session_Name_1"
+                android:text="5G_Drive_Session_01"
                 android:textColor="@color/text_primary_dark"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvDominantNetBadge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:background="@drawable/bg_badge_5g"
                 android:paddingStart="8dp"
                 android:paddingTop="3dp"
                 android:paddingEnd="8dp"
                 android:paddingBottom="3dp"
                 android:text="5G SA"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="11sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- Date & Sample Count -->
+        <!-- Date & Duration -->
         <TextView
             android:id="@+id/tvSessionDateDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="3dp"
             android:text="2026-11-20 21:00 | 12m 45s | 148 Samples"
             android:textColor="@color/text_secondary_dark"
             android:textSize="12sp" />
@@ -65,9 +67,9 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/card_border" />
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/divider_subtle" />
 
         <!-- Aggregated Metrics Row -->
         <LinearLayout
@@ -86,16 +88,17 @@
                     android:layout_height="wrap_content"
                     android:text="Avg RSRP"
                     android:textColor="@color/text_secondary_dark"
-                    android:textSize="10sp" />
+                    android:textSize="11sp" />
 
                 <TextView
                     android:id="@+id/tvAvgRsrp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif-medium"
                     android:text="-86 dBm"
-                    android:textColor="@color/color_good"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -109,16 +112,17 @@
                     android:layout_height="wrap_content"
                     android:text="Avg SINR"
                     android:textColor="@color/text_secondary_dark"
-                    android:textSize="10sp" />
+                    android:textSize="11sp" />
 
                 <TextView
                     android:id="@+id/tvAvgSinr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif-medium"
                     android:text="14.2 dB"
-                    android:textColor="@color/color_good"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -132,16 +136,17 @@
                     android:layout_height="wrap_content"
                     android:text="GW Latency"
                     android:textColor="@color/text_secondary_dark"
-                    android:textSize="10sp" />
+                    android:textSize="11sp" />
 
                 <TextView
                     android:id="@+id/tvAvgLatency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif-medium"
                     android:text="11.8 ms"
-                    android:textColor="@color/color_excellent"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -155,25 +160,26 @@
                     android:layout_height="wrap_content"
                     android:text="Max DL"
                     android:textColor="@color/text_secondary_dark"
-                    android:textSize="10sp" />
+                    android:textSize="11sp" />
 
                 <TextView
                     android:id="@+id/tvMaxDl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif-medium"
                     android:text="-- Mbps"
                     android:textColor="@color/text_primary_dark"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/card_border" />
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/divider_subtle" />
 
         <!-- Action Buttons -->
         <LinearLayout
@@ -182,58 +188,65 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnViewOnMap"
-                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="0dp"
-                android:layout_height="38dp"
-                android:layout_marginEnd="6dp"
-                android:layout_weight="1.2"
-                android:backgroundTint="@color/accent_5g"
-                android:padding="0dp"
-                android:text="VIEW ON MAP"
-                android:textColor="@color/color_accent_button_text"
-                android:textSize="11sp"
-                android:textStyle="bold"
-                app:cornerRadius="6dp" />
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1.3"
+                android:backgroundTint="@color/primary"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="View on Map"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:cornerRadius="8dp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnExportCsv"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
-                android:layout_height="38dp"
-                android:layout_marginEnd="4dp"
-                android:layout_weight="1"
-                android:padding="0dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="0.8"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:text="CSV"
-                android:textColor="@color/accent_5g"
-                android:textSize="11sp"
-                android:textStyle="bold"
-                app:cornerRadius="6dp"
-                app:strokeColor="@color/accent_5g" />
+                android:textAllCaps="false"
+                android:textColor="@color/primary"
+                android:textSize="12sp"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/card_border"
+                app:strokeWidth="1dp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnExportGeoJson"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
-                android:layout_height="38dp"
+                android:layout_height="40dp"
                 android:layout_marginEnd="6dp"
-                android:layout_weight="1.2"
-                android:padding="0dp"
-                android:text="GEOJSON"
-                android:textColor="@color/accent_5g"
-                android:textSize="11sp"
-                android:textStyle="bold"
-                app:cornerRadius="6dp"
-                app:strokeColor="@color/accent_5g" />
+                android:layout_weight="1.1"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="GeoJSON"
+                android:textAllCaps="false"
+                android:textColor="@color/primary"
+                android:textSize="12sp"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/card_border"
+                app:strokeWidth="1dp" />
 
             <ImageButton
                 android:id="@+id/btnDeleteSession"
-                android:layout_width="38dp"
-                android:layout_height="38dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Delete Session"
+                android:padding="8dp"
+                android:scaleType="centerInside"
                 android:src="@drawable/ic_delete"
-                app:tint="@color/color_bad" />
+                app:tint="@color/brand_red" />
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

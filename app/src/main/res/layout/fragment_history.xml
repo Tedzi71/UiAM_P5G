@@ -1,33 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_dark"
     android:orientation="vertical">
 
+    <!-- Screen Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="12dp">
 
-        <TextView
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SESSION HISTORY"
-            android:textColor="@color/accent_5g"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="Recorded Sessions"
+                android:textColor="@color/text_primary_dark"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="5G drive &amp; stationary test logs"
+                android:textColor="@color/text_secondary_dark"
+                android:textSize="12sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvSessionCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_status_idle"
+            android:paddingStart="10dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="4dp"
             android:text="0 Sessions"
-            android:textColor="@color/text_secondary_dark"
-            android:textSize="13sp" />
+            android:textColor="@color/text_primary_dark"
+            android:textSize="12sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <FrameLayout
@@ -39,8 +64,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingBottom="16dp" />
+            android:paddingStart="8dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="24dp" />
 
+        <!-- Clean Empty State -->
         <LinearLayout
             android:id="@+id/layoutEmptyHistory"
             android:layout_width="match_parent"
@@ -50,22 +79,33 @@
             android:padding="32dp"
             android:visibility="gone">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No Drive Tests Recorded Yet"
-                android:textColor="@color/text_primary_dark"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:alpha="0.4"
+                android:contentDescription="No history"
+                android:src="@drawable/ic_history"
+                app:tint="@color/text_primary_dark" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="No Recorded Sessions Yet"
+                android:textColor="@color/text_primary_dark"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:gravity="center"
-                android:text="Start a Drive Test on the Monitor tab to begin logging 5G radio metrics and gateway latency."
+                android:lineSpacingExtra="2dp"
+                android:maxWidth="280dp"
+                android:text="Start a QoS test session on the Monitor tab to begin recording 5G radio telemetry and gateway QoS metrics."
                 android:textColor="@color/text_secondary_dark"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
         </LinearLayout>
     </FrameLayout>
 </LinearLayout>

@@ -3,13 +3,13 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_variant</item>
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
-        <item name="colorSecondary">@color/accent_5g</item>
+        <item name="colorSecondary">@color/brand_red</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
         <item name="android:statusBarColor">@color/background_dark</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowBackground">@color/background_dark</item>
 
-        <!-- Native Android 12+ (API 31+) System Splash Screen (Padded & uncropped) -->
+        <!-- Native Android 12+ (API 31+) System Splash Screen -->
         <item name="android:windowSplashScreenBackground">@color/white</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/p5g_splash</item>
     </style>

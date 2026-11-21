@@ -11,7 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
@@ -114,12 +114,19 @@ class MapActivity : AppCompatActivity() {
 
     private fun showOptionsMenu(anchor: View) {
         val popup = PopupMenu(this, anchor)
-        popup.menu.add(0, 1, 0, if (currentMetricIndex == 0) "✓ Metric: SS-RSRP Coverage" else "Metric: SS-RSRP Coverage")
-        popup.menu.add(0, 2, 1, if (currentMetricIndex == 1) "✓ Metric: SS-SINR Quality" else "Metric: SS-SINR Quality")
-        popup.menu.add(0, 3, 2, if (currentMetricIndex == 2) "✓ Metric: 5G Gateway Latency" else "Metric: 5G Gateway Latency")
-        popup.menu.add(0, 4, 3, if (currentMetricIndex == 3) "✓ Metric: iperf3 Throughput" else "Metric: iperf3 Throughput")
-        popup.menu.add(0, 5, 4, if (currentMetricIndex == 4) "✓ Metric: 5G Network Type" else "Metric: 5G Network Type")
-        popup.menu.add(0, 6, 5, "⚙️ Change Color Thresholds")
+        val metrics = listOf(
+            1 to "SS-RSRP Coverage",
+            2 to "SS-SINR Quality",
+            3 to "5G Gateway Latency",
+            4 to "iperf3 Throughput",
+            5 to "5G Network Type"
+        )
+        for ((id, title) in metrics) {
+            val item = popup.menu.add(0, id, id - 1, title)
+            item.isCheckable = true
+            item.isChecked = (currentMetricIndex == id - 1)
+        }
+        popup.menu.add(1, 6, 5, "Configure Color Thresholds")
 
         popup.setOnMenuItemClickListener { item ->
             when (item.itemId) {
@@ -337,7 +344,7 @@ class MapActivity : AppCompatActivity() {
         dialogBinding.etLatMid.setText(latMidThresh.toInt().toString())
         dialogBinding.etLatPoor.setText(latPoorThresh.toInt().toString())
 
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this)
             .setView(dialogBinding.root)
             .setPositiveButton("Apply Thresholds") { _, _ ->
                 rsrpExcellentThresh = dialogBinding.etRsrpExcellent.text.toString().toIntOrNull() ?: rsrpExcellentThresh

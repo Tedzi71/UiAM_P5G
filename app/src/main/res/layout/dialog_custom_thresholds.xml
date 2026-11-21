@@ -2,61 +2,64 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/card_background_dark">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:paddingStart="24dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="12dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Customize Map Color Thresholds"
-            android:textColor="@color/accent_5g"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:fontFamily="sans-serif-medium"
+            android:text="Map Color Thresholds"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Adjust the bounds for 3GPP color classifications on the coverage map."
+            android:text="Tune 3GPP color classifications displayed on the coverage map."
             android:textColor="@color/text_secondary_dark"
             android:textSize="12sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:background="@color/card_border" />
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:background="@color/divider_subtle" />
 
-        <!-- RSRP Thresholds -->
+        <!-- RSRP Section -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
             android:text="SS-RSRP Thresholds (dBm)"
             android:textColor="@color/text_primary_dark"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            android:textSize="13sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
-                android:hint="Green (>)"
-                android:textColorHint="@color/text_secondary_dark"
-                app:boxBackgroundColor="@color/background_dark">
+                android:hint="Good (>)"
+                app:boxStrokeColor="@color/primary"
+                app:hintTextColor="@color/primary">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etRsrpExcellent"
@@ -64,18 +67,20 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberSigned"
                     android:text="-80"
-                    android:textColor="@color/color_excellent" />
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
-                android:hint="Yellow (Mid)"
-                android:textColorHint="@color/text_secondary_dark"
-                app:boxBackgroundColor="@color/background_dark">
+                android:hint="Mid (Yellow)"
+                app:boxStrokeColor="@color/primary"
+                app:hintTextColor="@color/primary">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etRsrpMid"
@@ -83,17 +88,19 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberSigned"
                     android:text="-100"
-                    android:textColor="@color/color_mid" />
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
-                android:hint="Red (&lt;)"
-                android:textColorHint="@color/text_secondary_dark"
-                app:boxBackgroundColor="@color/background_dark">
+                android:hint="Poor (&lt;)"
+                app:boxStrokeColor="@color/primary"
+                app:hintTextColor="@color/primary">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etRsrpPoor"
@@ -101,34 +108,36 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberSigned"
                     android:text="-110"
-                    android:textColor="@color/color_bad" />
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <!-- Latency Thresholds -->
+        <!-- Latency Section -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="5G Gateway Latency Thresholds (ms)"
             android:textColor="@color/text_primary_dark"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            android:textSize="13sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
-                android:hint="Green (&lt;)"
-                android:textColorHint="@color/text_secondary_dark"
-                app:boxBackgroundColor="@color/background_dark">
+                android:hint="Good (&lt;)"
+                app:boxStrokeColor="@color/primary"
+                app:hintTextColor="@color/primary">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etLatExcellent"
@@ -136,18 +145,20 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:text="15"
-                    android:textColor="@color/color_excellent" />
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
-                android:hint="Yellow (Mid)"
-                android:textColorHint="@color/text_secondary_dark"
-                app:boxBackgroundColor="@color/background_dark">
+                android:hint="Mid (Yellow)"
+                app:boxStrokeColor="@color/primary"
+                app:hintTextColor="@color/primary">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etLatMid"
@@ -155,17 +166,19 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:text="30"
-                    android:textColor="@color/color_mid" />
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
-                android:hint="Red (>)"
-                android:textColorHint="@color/text_secondary_dark"
-                app:boxBackgroundColor="@color/background_dark">
+                android:hint="Poor (>)"
+                app:boxStrokeColor="@color/primary"
+                app:hintTextColor="@color/primary">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etLatPoor"
@@ -173,9 +186,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:text="60"
-                    android:textColor="@color/color_bad" />
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
-
     </LinearLayout>
 </ScrollView>
